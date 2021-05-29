@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main(){
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MultiProvider(
         providers:[
@@ -20,7 +21,7 @@ class Base extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       onGenerateRoute: CustomRouter.generateRoute,
       theme: Provider.of<CustomTheme>(context).current,
-      initialRoute: '/home',
+      initialRoute: '/camera',
     );
   }
 }

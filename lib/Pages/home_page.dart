@@ -8,30 +8,14 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text('Home'),
+        actions: [
+          IconButton(onPressed: () => Navigator.pushNamed(context, '/settings'), icon: Icon(Icons.settings))
+        ],
       ),
       body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          ElevatedButton(
-              onPressed: () {},
-              child: Text(
-                'Press Me',
-                style: TextStyle(
-                    color:
-                        Provider.of<CustomTheme>(context, listen: false).value
-                            ? Colors.white
-                            : Colors.black),
-              )),
-          Switch(
-            onChanged: (bool value) =>
-                Provider.of<CustomTheme>(context, listen: false)
-                    .toggleTheme(value),
-            value: Provider.of<CustomTheme>(context, listen: false).value,
-          ),
-        ],
-      )),
+          child: ElevatedButton(child: Text('Camera'), onPressed: () => Navigator.pushNamed(context, '/camera'),))
     );
   }
 }
