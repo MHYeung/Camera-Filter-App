@@ -114,33 +114,38 @@ class _FilterState extends State<Filter> {
           ElevatedButton.icon(
               onPressed: () async {
                 print(filePaths);
-
-                _imageFile = null;
-                screenshotController
-                    .capture(delay: Duration(milliseconds: 10))
-                    .then((Uint8List image) async {
-                  _imageFile = image;
-                  Directory appDirectory = await getExternalStorageDirectory();
-                  String docPath = appDirectory.path;
-                  String fileName = 'image_${DateTime.now()}.jpg';
-                  String filePath = '$docPath/$fileName';
-                  filePaths.add(filePath);
-                  File file = new File(filePath);
-                  file.writeAsBytesSync(_imageFile);
-                  if (filePaths.isNotEmpty) {
+                if (filePaths.isNotEmpty) {
+                  await Share.shareFiles(filePaths);
+                } else {
+                  _imageFile = null;
+                  screenshotController
+                      .capture(delay: Duration(milliseconds: 10))
+                      .then((Uint8List image) async {
+                    _imageFile = image;
+                    Directory appDirectory =
+                        await getExternalStorageDirectory();
+                    String docPath = appDirectory.path;
+                    String fileName = 'image_${DateTime.now()}.jpg';
+                    String filePath = '$docPath/$fileName';
+                    filePaths.add(filePath);
+                    File file = new File(filePath);
+                    file.writeAsBytesSync(_imageFile);
                     await Share.shareFiles(filePaths);
-                  }
-                });
+                  });
+                }
               },
               icon: Icon(Icons.share),
               label: Text(
                 '分享圖片',
                 style: TextStyle(fontSize: 24),
               )),
-          ElevatedButton.icon(onPressed: () => Navigator.popAndPushNamed(context, '/camera'), icon: Icon(Icons.refresh_rounded), label: Text(
-            '重新選擇圖片',
-            style: TextStyle(fontSize: 24),
-          ))
+          ElevatedButton.icon(
+              onPressed: () => Navigator.popAndPushNamed(context, '/camera'),
+              icon: Icon(Icons.refresh_rounded),
+              label: Text(
+                '重新選擇圖片',
+                style: TextStyle(fontSize: 24),
+              ))
         ],
       ),
     );
