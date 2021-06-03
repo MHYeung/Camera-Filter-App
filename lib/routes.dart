@@ -1,21 +1,25 @@
+import 'dart:io';
 
+import 'package:camera_filter/Model/screen_arguments.dart';
 
+import 'Pages/camera_filter_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'Pages/camera_page.dart';
-import 'Pages/home_page.dart';
 import 'Pages/setting_page.dart';
 
 class CustomRouter{
   static Route<dynamic> generateRoute (RouteSettings settings){
+    final dynamic args = settings.arguments;
+    ScreenArguments arguments = args;
     switch(settings.name){
-      case '/home':
-        return MaterialPageRoute(builder: (_) => Home());
       case '/settings':
         return MaterialPageRoute(builder: (_) => Settings());
       case '/camera':
         return MaterialPageRoute(builder: (_) => CameraPage());
+      case '/filter':
+        return MaterialPageRoute(builder: (_) => FilterPage(image: arguments.file,filterName: arguments.filterName));
       default:
         return MaterialPageRoute(builder: (_) => ErrorPage());
     }

@@ -20,17 +20,17 @@ class CustomTheme extends ChangeNotifier {
           style: ElevatedButton.styleFrom(
         padding: EdgeInsets.all(5.0),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
-        primary: Color.fromRGBO(245, 196, 226, 1),
+        primary: Colors.brown[700],
         textStyle: TextStyle(color: Colors.black),
       )),
-      buttonColor: Color.fromRGBO(245, 196, 226, 1),
+      buttonColor: Colors.brown[700],
       appBarTheme: AppBarTheme(
         backgroundColor: Color.fromRGBO(196, 245, 240, 1),
         centerTitle: true,
       ),
-      accentColor: Colors.cyan[200],
+      accentColor: Colors.brown[700],
       snackBarTheme:
-          SnackBarThemeData(backgroundColor: Color.fromRGBO(245, 216, 196, 1)),
+          SnackBarThemeData(backgroundColor: Colors.black,),
       primaryColor: Color.fromRGBO(196, 226, 245, 1.0),
       scaffoldBackgroundColor: Color.fromRGBO(196, 201, 245, 1),
       textTheme: TextTheme(
